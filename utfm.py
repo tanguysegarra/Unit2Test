@@ -16,12 +16,10 @@ class Category:
 
     def check(self):
 
-        print("~~~ " + self.title + " ~~~")
+        print("\n~~~ " + self.title + " ~~~")
 
         for t in self.tests:
             t.check()
-
-        print("")
 
 
 class Test:
