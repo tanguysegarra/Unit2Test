@@ -8,9 +8,10 @@ c_addition = utfm.Category("ADDITION")
 
 c_addition.add_test(utfm.Test(funs.add, [1, 1], 2))
 c_addition.add_test(utfm.Test(funs.add, [3, 4], 7))
-c_addition.add_test(utfm.Test(funs.add, [0, 0], 0))
 
 c_addition.check()
+
+utfm.Test(funs.add, [3, 4], 5).check()
 
 # CONCATENATION TESTS
 
