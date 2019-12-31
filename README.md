@@ -113,4 +113,3 @@ add(1, 1) = 2 [OK]
 # TODO
 
 * add feature to load test from file
-* add verbose/quiet/file options
