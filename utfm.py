@@ -1,5 +1,3 @@
-from optparse import OptionParser
-
 import importlib
 
 
@@ -30,6 +28,25 @@ class Test:
         self.inp = inp
         self.out = out
 
+    @classmethod
+    def load_from_file(cls, func, path):
+
+        f = open(path)
+        lines = f.readlines()
+        f.close()
+
+        inp = []
+        for i in range(int(lines[0])):
+            if len(lines[i + 1]) > 1:
+                inp.append(lines[i + 1][0])
+            else:
+                inp.append(lines[i + 1])
+
+        out = lines[len(lines) - 1]
+
+        return cls(func, inp, out)
+
+
     def check(self):
 
         fmt_inp = ", ".join(str(x) for x in self.inp)
@@ -37,14 +54,16 @@ class Test:
         try:
             res = self.function(*self.inp)
 
-
             if res == self.out:
-                print(f"{self.function.__name__}({fmt_inp}) = {res}", end=' ')
-                print("\033[0;32m[OK]\033[0m")
+                print("\033[0;32m[OK]\033[0m", end='')
+                print(f" {self.function.__name__}({fmt_inp}) = {res}", end=' ')
 
             else:
-                print(f"{self.function.__name__}({fmt_inp}) = {res} | Expected: {self.out}", end=' ')
-                print("\033[0;31m[KO]\033[0m")
+                print("\033[0;31m[KO]\033[0m", end='')
+                print(f" {self.function.__name__}({fmt_inp}) = {res} | Expected: {self.out}", end=' ')
+                #print(f" Expected: {self.out} | Received: {res}")
+
+            print("")
 
         except Exception as e:
             print(e, "\033[0;31m[K0]\033[0m")
