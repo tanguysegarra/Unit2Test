@@ -1,5 +1,6 @@
 import utfm
 
+
 funs = utfm.load_module("somecode.py")
 
 # ADDITION TESTS
@@ -12,6 +13,9 @@ c_addition.add_test(utfm.Test(funs.add, [3, 4], 7))
 c_addition.check()
 
 utfm.Test(funs.add, [3, 4], 5).check()
+
+test_from_file = utfm.Test.load_from_file(funs.add, "test_in_a_file")
+test_from_file.check()
 
 # CONCATENATION TESTS
 
