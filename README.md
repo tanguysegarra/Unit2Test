@@ -1,20 +1,37 @@
-# Unit2TestUrPython: "You need to test your python"
+# Unit2Test >> "You need to test!"
+
 
 ## What is it?
 
 A Python3 unit-testing framework I wrote for fun and learning purposes.
 
-## How to use?
 
-Start your test code with
+## Three levels
 
-```python3
-import utfm
-```
+With this tool, you can either create simple individual tests and run them one
+by one, by hand.
+
+You could also decide to create a category of tests for a given feature, give it
+a title, and run all of the tests contained in this category.
+
+Finally, you could build a test suite containing categories, themselves
+containing many tests, to get the best of this tool. This would allow you a
+better displaying and a success rate given as a summary for your tests.
+
 
 ## API
 
 * `load_module(PATH)`: to import functions from python file given as PATH.
+
+* `Test(FUNCTION, INPUT, OUTPUT)`: to declare a new test.
+The FUNCTION value is the tested function's name, preceded by the return
+value of the `load_module` call.
+The INPUT value must be a list containing all parameters given to the
+function.
+THE OUTPUT value is the expected return value of the tested function with
+these parameters.
+
+* `TEST.check()`: to evaluate the instanced test TEST.
 
 * `Category(TITLE)`: to declare a new category of tests. The TITLE value will be
 used for display.
@@ -24,36 +41,51 @@ TESTS can be as a constructor parameter.
 
 * `CATEGORY.add_test(TEST)`: to add the test TEST to the category CATEGORY.
 
-* `Test(FUNCTION, INPUT, OUTPUT)`: to declare a new test.
-    The FUNCTION value is the tested function's name, preceded by the return
-    value of the `load_module` call.
-    The INPUT value must be a list containing all parameters given to the
-    function.
-    THE OUTPUT value is the expected return value of the tested function with
-    these parameters.
-
-* `TEST.check()`: to evaluate the instanced test TEST.
-
 * `CATEGORY.check()`: to evaluates all the tests in the instanced category
 CATEGORY.
+
+* `Suite(CATEGORIES)`: to create a suite of categories, all of them contained
+in the list CATEGORIES.
+
+* `SUITE.run()`: to run all the tests contained in each categories and get a
+success percentage displayed.
+
 
 ## Example
 
 All the code below is available in the file [example.py](example.py)
 
+First, include the module
+
 ```python3
-import utfm
+from utfm import *
+```
 
-funs = utfm.load_module("somecode.py")
+Then, import the code to test with
 
-c_addition = utfm.Category("ADDITION")
+```python
+funs = load_module("somecode.py")
+```
+
+You can create and execute directly a random test with
+
+```python
+Test(funs.add, [3, 4], 5).check()
+```
+
+You can create a category of tests with
+
+```python
+c_addition = Category("ADDITION")
 
 c_addition.add_test(utfm.Test(funs.add, [3, 4], 7))
 c_addition.add_test(utfm.Test(funs.add, [1, 1], 2))
+```
 
+and launch the tests on this category with
+
+```python
 c_addition.check()
-
-utfm.Test(funs.add, [3, 4], 5).check()
 ```
 
 When executed with
@@ -62,12 +94,12 @@ When executed with
 $python example.py
 ```
 
-you should get the following output
+all this code should give you the following output
 
 ```
+add(3, 4) = 7 | Expected: 5 [KO]
 add(3, 4) = 7 [OK]
 add(1, 1) = 2 [OK]
-add(3, 4) = 7 | Expected: 5 [KO]
 ```
 
 # Author
@@ -77,6 +109,4 @@ add(3, 4) = 7 | Expected: 5 [KO]
 # TODO
 
 * add feature to load test from file
-* add feature to get success percentage over all tests
-        for example a stats_display() function
 * add verbose/quiet/file options
