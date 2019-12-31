@@ -23,6 +23,10 @@ better displaying and a success rate given as a summary for your tests.
 
 * `load_module(PATH)`: to import functions from python file given as PATH.
 
+* `parse_options()`: to parse potential options given through the command line.
+There is the verbose option `-v | --verbose`, the quiet option `-q |
+--quiet`(set as default), and the help option `-h | --help`.
+
 * `Test(FUNCTION, INPUT, OUTPUT)`: to declare a new test.
 The FUNCTION value is the tested function's name, preceded by the return
 value of the `load_module` call.
