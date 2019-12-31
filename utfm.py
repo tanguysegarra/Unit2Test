@@ -39,12 +39,12 @@ class Test:
 
 
             if res == self.out:
-                print(f"{self.function.__name__}({fmt_inp}) = {res}", end=' ')
-                print("\033[0;32m[OK]\033[0m")
+                print("\033[0;32m[OK]\033[0m ", end='')
+                print(f"{self.function.__name__}({fmt_inp}) = {res}")
 
             else:
-                print(f"{self.function.__name__}({fmt_inp}) = {res} | Expected: {self.out}", end=' ')
-                print("\033[0;31m[KO]\033[0m")
+                print("\033[0;31m[KO]\033[0m ", end='')
+                print(f"{self.function.__name__}({fmt_inp}) = {res} | Expected: {self.out}")
 
         except Exception as e:
             print(e, "\033[0;31m[K0]\033[0m")
