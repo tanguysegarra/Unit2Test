@@ -1,6 +1,7 @@
 from utfm import *
 
 funs = load_module("somecode.py")
+opt = parse_options()
 
 # ADDITION TESTS
 
@@ -25,4 +26,4 @@ c_length.add_test(Test(funs.length, [[1, 2, 3]], 3))
 # TEST SUITE RUNNER
 
 suite = Suite([c_addition, c_concatenation, c_length])
-suite.run()
+suite.run(opt)
