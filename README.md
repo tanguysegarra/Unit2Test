@@ -32,9 +32,13 @@ TESTS can be as a constructor parameter.
     THE OUTPUT value is the expected return value of the tested function with
     these parameters.
 
+* `Test.load_from_file(PATH)`: read the file given as PATH. Its first lign
+* should be the function name, its second lign should be the input parameters,
+* and the third lign should be the expected output.
+
 * `TEST.check()`: to evaluate the instanced test TEST.
 
-* `CATEGORY.check()`: to evaluates all the tests in the instanced category
+* `CATEGORY.check()`: to evaluate all the tests in the instanced category
 CATEGORY.
 
 ## Example
